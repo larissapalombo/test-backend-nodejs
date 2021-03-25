@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const { products } = require('../model/index');
+const { validateProduct } = require('../middleware/validateProduct');
 
 const productController = Router();
 
-productController.post('/', async (req, res) => {
+productController.post('/', validateProduct, async (req, res) => {
   const { title, description, price, category } = req.body;
   const addProduct = await products.add('products', { title, description, price, category });
 
@@ -16,14 +17,14 @@ productController.get('/', async (_req, res) => {
   res.status(200).json({ products: findAllProducts });
 });
 
-productController.get('/:title', async (req, res) => {
+productController.get('/:title', validateProduct, async (req, res) => {
   const { title } = req.params;
   const findProductByName = await products.findByName('products', title);
 
   res.status(200).json(findProductByName);
 });
 
-productController.get('/:category', async (req, res) => {
+productController.get('/:category', validateProduct, async (req, res) => {
   const { category } = req.params;
   const findProductByCategory = await products.findByCategory('products', category);
 
