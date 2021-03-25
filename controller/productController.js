@@ -1,7 +1,7 @@
-const express = require('express');
-const { shared, products } = require('../model/index');
+const { Router } = require('express');
+const { products } = require('../model/index');
 
-const productController = express.Router();
+const productController = Router();
 
 productController.post('/', async (req, res) => {
   const { title, description, price, category } = req.body;
@@ -10,22 +10,22 @@ productController.post('/', async (req, res) => {
   res.status(201).json(addProduct);
 });
 
-productController.get('/', async (_, res) => {
-  const findAllProducts = await shared.findAll('products');
+productController.get('/', async (_req, res) => {
+  const findAllProducts = await products.findAll('products');
 
   res.status(200).json({ products: findAllProducts });
 });
 
-productController.get('/:name', async (req, res) => {
-  const { name } = req.params;
-  const findProductByName = await shared.findById('products', name);
+productController.get('/:title', async (req, res) => {
+  const { title } = req.params;
+  const findProductByName = await products.findByName('products', title);
 
   res.status(200).json(findProductByName);
 });
 
 productController.get('/:category', async (req, res) => {
   const { category } = req.params;
-  const findProductByCategory = await shared.findById('products', category);
+  const findProductByCategory = await products.findByCategory('products', category);
 
   res.status(200).json(findProductByCategory);
 });
@@ -50,4 +50,4 @@ productController.delete('/:id', async (req, res) => {
   res.status(200).json(excludedProduct);
 });
 
-module.exports = productController;
+module.exports = { productController };

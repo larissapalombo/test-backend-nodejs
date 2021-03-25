@@ -5,7 +5,7 @@ const DB_NAME = 'StoreManager';
 
 let connection = null;
 
-const getCollection = async (collectionName) => {
+const getConnection = async (collectionName) => {
   connection =
     connection ||
     (await MongoClient.connect(MONGO_DB_URL, {
@@ -16,4 +16,4 @@ const getCollection = async (collectionName) => {
   return connection.db(DB_NAME).collection(collectionName);
 };
 
-module.exports = getCollection;
+module.exports = getConnection;
