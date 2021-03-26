@@ -23,6 +23,15 @@ Para isso, crie o database e a collection, por exemplo:
 5- show collections
 products
 
+## Testes
+
+Para rodar os testes, lembre-se de deixar o servidor rodando e execute o seguinte comando
+
+`npm run test`
+
+Nem todos os testes estão funcionando, pois não houve tempo hábil para desenvolver e verificar os erros ocorridos.
+Mas deixei para mostrar ao menos a lógica da implementação dos testes.
+
 ## Endpoints:
 
 1- Cadastro de produtos
@@ -91,11 +100,3 @@ As seguintes validações serão feitas através do middleware:
 
 - Apenas o produto com o `id` presente na URL deve ser deletado;
 
-
-## Testes
-
-Para rodar os testes, lembre-se de deixar o servidor rodando e execute o seguinte comando
-
-`npm run test`
-
-Nem todos os testes estão funcionando, pois não houve tempo hábil para desenvolver e verificar os erros ocorridos.
