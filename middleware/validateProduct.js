@@ -1,5 +1,3 @@
-const { products } = require('../model/index');
-
 const validateProduct = async (req, res, next) => {
   const { title, description, price, category } = req.body;
 

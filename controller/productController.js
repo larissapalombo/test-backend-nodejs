@@ -31,7 +31,7 @@ productController.get('/:category', validateProduct, async (req, res) => {
   res.status(200).json(findProductByCategory);
 });
 
-productController.put('/:id', async (req, res) => {
+productController.put('/:id', validateProduct, async (req, res) => {
   const { id } = req.params;
   const { title, description, price, category } = req.body;
   const updatedProduct = await products.update('products', id, {
